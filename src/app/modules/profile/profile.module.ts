@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CardModule } from 'primeng/card';
 import { ViewerComponent } from './viewer/viewer.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { ImageModule } from 'primeng/image';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     ProfileRoutingModule,
     HttpClientModule,
     CardModule,
-    NgxChartsModule
+    NgxChartsModule,
+    ImageModule
   ],
   providers: [
     GithubService

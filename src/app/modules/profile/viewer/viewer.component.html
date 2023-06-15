@@ -1,1 +1,69 @@
-<p>viewer works!</p>
+<div class="flex col-8 col-offset-2">
+  <div class="col-5">
+    <div class="d-flex avatar">
+      <p-image [src]="userData.avatar_url" alt="Avatar" width="100%"></p-image>
+    </div>
+    <div>
+      <h1>{{ userData.name }}</h1>
+      <h4><a [href]="userData.html_url">@{{ userData.login }}</a></h4>
+      <p>{{ userData.bio }}</p>
+    </div>
+    <div class="my-3">
+      <i class="fa-solid fa-users"></i>
+      <span class="ml-3">{{ userData.followers }}</span>
+      <span class="ml-1">followers</span>
+      <span class="mx-1"> - </span>
+      <span>{{ userData.following }}</span>
+      <span class="ml-1">following</span>
+    </div>
+    <div class="my-1">
+      <i class="fa-solid fa-envelope"></i>
+      <span class="ml-3">{{ userData.email || 'no registrado' }}</span>
+    </div>
+    <div class="my-1">
+      <i class="fa-brands fa-twitter"></i>
+      <span class="ml-3">{{ '@'+userData.twitter_username || 'no registrado' }}</span>
+    </div>
+    <div class="mt-3">
+      <a [href]="'https://github.com/' + userData.login" target="_blank" class="profile-link">Ver perfil</a>
+    </div>
+  </div>
+  <div class="col-7 pl-4">
+    <h2 class="text-center">Repositorios</h2>
+    <div class="grid align-items-stretch">
+      <div class="col-6" *ngFor="let repo of reposList">
+        <p-card class="repo-card relative">
+          <ng-template pTemplate="header">
+            <div class="p-3 flex align-items-center justify-content-between">
+              <a [href]="repo.html_url" class="repo-link">{{ repo.name }}</a>
+              <span class="repo-visibility py-2 px-3">
+                {{ repo.visibility }}
+              </span>
+            </div>            
+          </ng-template>
+          <p class="mt-0">
+            {{ repo.description }}
+          </p>
+          <ng-template pTemplate="footer">
+            <div class="absolute bottom-0 pt-3">
+              <div class="p-3 flex align-items-center">
+                <span>
+                  <i class="fa-solid fa-code-branch mr-2"></i>
+                  {{ repo.default_branch }}
+                </span>
+                <span class="ml-3">
+                  <i class="fa-solid fa-star mr-2"></i>
+                  {{ repo.watchers_count }}
+                </span>
+                <span class="ml-3" *ngIf="repo.language">
+                  <i class="fa-solid fa-code mr-2"></i>
+                  {{ repo.language }}
+                </span>
+              </div>
+            </div>            
+          </ng-template>
+        </p-card>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+@import '../../../../styles/variables/main'
+
+  
+p-image ::ng-deep .p-image img
+  border-radius: 50% !important
+
+.avatar p-image
+  cursor: pointer
+
+  & ::ng-deep img
+    transition: 1s all
+
+    &:hover
+      transition: 1s all
+      box-shadow: 0 0 5px 5px $primary-color
+  
+.repo-link
+  color: $primary-color
+  font-weight: bold
+  text-decoration: none
+
+.repo-visibility
+  border: 1px solid $text-color
+  border-radius: 2rem
+
+p-card ::ng-deep .p-card
+  height: 100%
