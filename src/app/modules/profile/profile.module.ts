@@ -7,7 +7,7 @@ import { GithubService } from 'src/app/shared/services/github.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CardModule } from 'primeng/card';
 import { ViewerComponent } from './viewer/viewer.component';
-
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,8 @@ import { ViewerComponent } from './viewer/viewer.component';
     ReactiveFormsModule,
     ProfileRoutingModule,
     HttpClientModule,
-    CardModule
+    CardModule,
+    NgxChartsModule
   ],
   providers: [
     GithubService
