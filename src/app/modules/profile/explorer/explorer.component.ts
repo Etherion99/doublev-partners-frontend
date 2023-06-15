@@ -55,8 +55,8 @@ export class ExplorerComponent {
 
   async getUsersFollowers(){
     this.users = await Promise.all(this.users.map(async user => {
-      const followers = (await this.githubService.getUserFollowers(user.login)) as any[] || [];
-      user['followers'] = followers.length;
+      const userData: any = await this.githubService.getUser(user.login);
+      user['followers'] = userData['followers'];
 
       return user;
     }));
