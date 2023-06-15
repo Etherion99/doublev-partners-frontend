@@ -19,7 +19,7 @@ export class GithubService {
     return await lastValueFrom(this.http.get(`${this.API}/users/${login}`));
   }
 
-  async getUserFollowers(login: string) {
-    return await lastValueFrom(this.http.get(`${this.API}/users/${login}/followers`));
+  async getUserRepos(login: string) {
+    return await lastValueFrom(this.http.get(`${this.API}/users/${login}/repos?per_page=${this.limit}`));
   }
 }
