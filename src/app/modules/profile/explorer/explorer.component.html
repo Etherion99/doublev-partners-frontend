@@ -1,9 +1,41 @@
-<div class="grid justify-content-center my-4">
-  <div class="col-md-8 text-center d-flex">
-    <span class="p-input-icon-right">
-      <i class="fa-solid fa-magnifying-glass"></i>
-      <input type="text" pInputText [formControl]="searchTextControl" placeholder="Find a user..." id="search-input"/>
-    </span>
+<div class="grid justify-content-center my-4 col-12">
+  <div class="md:col-8">
+    <div class="grid justify-content-center">
+      <span class="p-input-icon-right">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" pInputText [formControl]="searchTextControl" placeholder="Find a user..." 
+          (input)="search()" id="search-input"/>
+      </span>
+    </div>
+    <div class="grid mt-5 error-message justify-content-center" 
+      *ngIf="searchTextControl.invalid && (true || searchTextControl.dirty || searchTextControl.touched)">
+      <strong *ngIf="searchTextControl.hasError('required')">
+        Field is required.<br>
+      </strong>
+      <strong *ngIf="searchTextControl.hasError('minlength')">
+        Minimum length is 4 characters.<br>
+      </strong>
+      <strong *ngIf="searchTextControl.hasError('forbiddenWord')">
+        The word "{{ searchTextControl.value }}" is not allowed.<br>
+      </strong>
+    </div>
+    <div class="grid mt-5">
+      <div class="grid" id="search-results">
+        <div class="col-4 p-3" *ngFor="let user of users">
+          <p-card class="user-card">
+            <ng-template pTemplate="header">
+              <img alt="Card" [src]="user.avatar_url" class="border-round" />
+            </ng-template>
+            <div class="flex col-12 justify-content-center">
+              <strong class="m-0">
+                {{ user.login }}
+              </strong>
+            </div>
+            
+          </p-card>
+        </div>
+      </div>
+    </div>    
+  </div>
 </div>
-
 
