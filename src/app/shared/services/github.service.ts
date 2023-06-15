@@ -11,11 +11,15 @@ export class GithubService {
 
   constructor(private http: HttpClient) {}
 
-  searchUsers(username: string) {
-    return this.http.get(`${this.API}/search/users?q=${username}&per_page=${this.limit}`);
+  searchUsers(login: string) {
+    return this.http.get(`${this.API}/search/users?q=${login}&per_page=${this.limit}`);
   }
 
-  async getUser(username: string) {
-    return await lastValueFrom(this.http.get(`${this.API}/users/${username}`));
+  async getUser(login: string) {
+    return await lastValueFrom(this.http.get(`${this.API}/users/${login}`));
+  }
+
+  async getUserFollowers(login: string) {
+    return await lastValueFrom(this.http.get(`${this.API}/users/${login}/followers`));
   }
 }
