@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './core/components/errors/not-found/not-found.component';
+import { NotAllowedComponent } from './core/components/errors/not-allowed/not-allowed.component';
 
 const routes: Routes = [
   {
@@ -13,12 +14,16 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   { 
-    path: '404',
+    path: 'errors/404',
     component: NotFoundComponent
   },
   { 
+    path: 'errors/not-allowed',
+    component: NotAllowedComponent
+  },
+  { 
     path: '**',
-    redirectTo: '404'
+    redirectTo: 'errors/404'
   }  
 ];
 

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from "@angular/router";
 import { ExplorerComponent } from "./explorer/explorer.component";
+import { ViewerComponent } from './viewer/viewer.component';
+import { ScoreGuard } from 'src/app/core/guards/score-guard';
 
 const routes: Routes = [
   {
@@ -11,6 +13,11 @@ const routes: Routes = [
   {
     path: 'explorer',
     component: ExplorerComponent
+  },
+  {
+    path: 'viewer/:login',
+    component: ViewerComponent,
+    canActivate: [ScoreGuard]
   }
 ];
 
