@@ -20,18 +20,26 @@
       </strong>
     </div>
     <div class="grid mt-5">
-      <div class="grid" id="search-results">
+      <div class="grid justify-content-center" id="search-results">
         <div class="col-4 p-3" *ngFor="let user of users">
           <p-card class="user-card">
             <ng-template pTemplate="header">
               <img alt="Card" [src]="user.avatar_url" class="border-round" />
             </ng-template>
-            <div class="flex col-12 justify-content-center">
-              <strong class="m-0">
-                {{ user.login }}
-              </strong>
+            <div class="flex justify-content-center">
+              <h2 class="user-name">
+                <strong class="m-0">
+                  {{ user.login }}
+                </strong>
+              </h2>
             </div>
-            
+            <div class="flex justify-content-center">
+              <h4 class="user-id">
+                <strong class="m-0">
+                  ID: {{ user.id }}
+                </strong>
+              </h4>
+            </div>
           </p-card>
         </div>
       </div>
