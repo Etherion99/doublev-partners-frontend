@@ -6,11 +6,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { GithubService } from 'src/app/shared/services/github.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CardModule } from 'primeng/card';
+import { ViewerComponent } from './viewer/viewer.component';
 
 
 @NgModule({
   declarations: [
-    ExplorerComponent
+    ExplorerComponent,
+    ViewerComponent
   ],
   imports: [
     CommonModule,
