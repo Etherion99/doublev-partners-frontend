@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { lastValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class GithubService {
     return this.http.get(`${this.API}/search/users?q=${username}&per_page=${this.limit}`);
   }
 
-  getUser(username: string) {
-    return this.http.get(`${this.API}/users/${username}`);
+  async getUser(username: string) {
+    return await lastValueFrom(this.http.get(`${this.API}/users/${username}`));
   }
 }
