@@ -30,7 +30,18 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.sass"
+              "src/styles.sass",
+              "src/styles/main.sass",
+              {
+                "input": "src/styles/themes/theme-light.sass",
+                "bundleName": "theme-light",
+                "inject": false
+              },
+              {
+                "input": "src/styles/themes/theme-dark.sass",
+                "bundleName": "theme-dark",
+                "inject": false
+              }
             ],
             "scripts": []
           },
