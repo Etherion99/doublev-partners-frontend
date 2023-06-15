@@ -22,7 +22,7 @@
     <div class="grid mt-5">
       <div class="grid justify-content-center" id="search-results">
         <div class="col-4 p-3" *ngFor="let user of users">
-          <p-card class="user-card">
+          <p-card class="user-card" (click)="openViewer(user)">
             <ng-template pTemplate="header">
               <img alt="Card" [src]="user.avatar_url" class="border-round" />
             </ng-template>
@@ -34,9 +34,16 @@
               </h2>
             </div>
             <div class="flex justify-content-center">
-              <h4 class="user-id">
+              <h4 class="user-id m-1">
                 <strong class="m-0">
                   ID: {{ user.id }}
+                </strong>
+              </h4>
+            </div>
+            <div class="flex justify-content-center">
+              <h4 class="user-score m-1">
+                <strong class="m-0">
+                  SCORE: {{ user.score }}
                 </strong>
               </h4>
             </div>
@@ -45,5 +52,21 @@
       </div>
     </div>    
   </div>
+</div>
+
+<h2 class="text-center">Estadísticas de Seguidores</h2>
+
+<div class="grid justify-content-center my-4 col-12">
+  <ngx-charts-bar-vertical
+  [view]="chartView"
+  [results]="chartData"
+  [xAxis]="chartConfig['showXAxis']"
+  [yAxis]="chartConfig['showYAxis']"
+  [legend]="chartConfig['showLegend']"
+  [showXAxisLabel]="chartConfig['showXAxisLabel']"
+  [showYAxisLabel]="chartConfig['showYAxisLabel']"
+  [xAxisLabel]="chartConfig['xAxisLabel']"
+  [yAxisLabel]="chartConfig['yAxisLabel']">
+</ngx-charts-bar-vertical>
 </div>
 

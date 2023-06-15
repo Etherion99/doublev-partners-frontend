@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { GithubService } from 'src/app/shared/services/github.service';
 import { forbidenWordValidator } from 'src/app/shared/validators/forbidenWordValidator';
 
@@ -17,19 +18,60 @@ export class ExplorerComponent {
 
   users: any[] = [];
 
+  chartConfig = {
+    showXAxis: true,
+    showYAxis: true,
+    showLegend: true,
+    showXAxisLabel: true,
+    xAxisLabel: 'Usuario',
+    showYAxisLabel: true,
+    yAxisLabel: 'Seguidores'
+  };
+
+  chartView: [number, number] = [800, 400];
+  chartData: any[] = [];
+
   constructor(
-    private readonly githubService: GithubService
+    private readonly githubService: GithubService,
+    private router: Router
   ) {
     this.search();
   }
 
   search() {
-    console.log('searching', this.searchTextControl.valid);
     if(this.searchTextControl.valid) {
       this.githubService.searchUsers(this.searchTextControl.value || '').subscribe((data: any) => {
-        this.users = data['items'];
-        console.log(this.users[4]);
+        this.users = data['items'].map((item: any) => {
+          item['score'] = Math.floor(Math.random() * (50 - 20 + 1)) + 20;
+          return item;
+        });
+        
+        this.getUsersFollowers();
       });
-    }    
+    }else{
+      this.users = [];
+    }
+  };
+
+  async getUsersFollowers(){
+    this.users = await Promise.all(this.users.map(async user => {
+      const followers = (await this.githubService.getUserFollowers(user.login)) as any[] || [];
+      user['followers'] = followers.length;
+
+      return user;
+    }));
+
+    this.createFollowersChart();
+  }
+
+  createFollowersChart(){
+    this.chartData = this.users.map(user => ({
+      name: user.login,
+      value: user.followers
+    }));
+  }
+
+  openViewer(user: any){
+    this.router.navigateByUrl(`/profile/viewer/${user.login}?score=${user.score}`);
   }
 }
