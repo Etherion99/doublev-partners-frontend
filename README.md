@@ -4,7 +4,7 @@ Angular frontend for the technical test of the full-stack developer position at 
 
 ## Aclaraciones y Comentarios
 
-- El endpoint users de la api de github (https://api.github.com/users/{login}) no retorna el score del usuario con lo cuál no es un método viable de comprobar el score del usuario al cual se le está consultando su perfil, para ello se plantean algunas alternativas.
+- El endpoint users de la api de github (https://api.github.com/users/${login}) no retorna el score del usuario con lo cuál no es un método viable de comprobar el score del usuario al cual se le está consultando su perfil, para ello se plantean algunas alternativas.
 
 1. Aprovechar que en el explorador se obtienen los scores y enviarlo como parámetro de la URL para ser recuperado luego por el guard (esta opción no es viable desde el punto de vista de seguridad ya que el usuario puede manipular el score).
 
@@ -39,7 +39,7 @@ try {
 
 - la gráfica de seguidores en los usuarios consultados se encuentra al final de la lista de resultados y es viisble solo luego de realizar la búsqueda.
 
-- para mejorar la UX se optó por eliminar el uso de un botón para aciconar la búsqueda y se reemplazó por eventos de teclado que detectan cuando el usuario diligencia el campo de búsqueda.
+- para mejorar la UX se optó por eliminar el uso de un botón para accionar la búsqueda y se reemplazó por eventos de teclado que detectan cuando el usuario diligencia el campo de búsqueda.
 
 ## Despliegue en Local
 
@@ -62,3 +62,5 @@ https://sebastian-trujillo.me/doublevpartners-frontend
 - primeng/primeflex (Framework CSS seleccionado, es muy similar a Bootstrap pero con una librería más amplia de componentes y fácil manejo de temas. Primeng contiene los componentes y manejo de temas mientras que primeflex tiene las clases precreadas para aplicar estilos al igual que lo hace Bootstrap).
 - fontawesome (librería de iconos)
 - ngx-charts (librería de gráficos seleccionada)
+
+## Estructura general del proyecto
