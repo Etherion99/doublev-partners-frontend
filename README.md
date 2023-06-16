@@ -63,4 +63,4 @@ https://sebastian-trujillo.me/doublevpartners-frontend
 - fontawesome (librería de iconos)
 - ngx-charts (librería de gráficos seleccionada)
 
-## Estructura general del proyecto
+
