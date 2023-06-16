@@ -37,6 +37,10 @@ try {
 
 - Después de consultar la API con los scores de los usuarios se evidenció que por alguna razón todos los scores eran 1 lo cuál hacía imposible que ningún perfil pasara por el guard, por este motivo se asignaron scores aleatorios entre 20 y 50 a todos los usuarios y se modificó el routing para enviar el score como un parametro de la URL (esta práctica es específica de este caso y con motivos de poder probar correctamente la aplicación, en un entorno de producción e suna mala práctica ya que se le da la opción al usuario de fácilmente manipular el score y atravesar el guard, lo ideal es buscar una fuente confiable de datos que proporcione los scores sin influencia del usuario).
 
+- la gráfica de seguidores en los usuarios consultados se encuentra al final de la lista de resultados y es viisble solo luego de realizar la búsqueda.
+
+- para mejorar la UX se optó por eliminar el uso de un botón para aciconar la búsqueda y se reemplazó por eventos de teclado que detectan cuando el usuario diligencia el campo de búsqueda.
+
 ## Despliegue en Local
 
 1. clonar el repositorio
@@ -45,9 +49,16 @@ try {
 
 ## Despliegue a Producción
 
-1. Ejecutar ```npm run build```
+1. Ejecutar `npm run build`
 2. Copiar el contenido de dist/doublev-partners-frontend en el public_html del servidor o la carpeta principal del servidor web según corresponda.
 
 ## Demo
 
 https://sebastian-trujillo.me/doublevpartners-frontend
+
+## Tecnologías utilizadas
+
+- Angular (HTML5, CSS3, Typescript)
+- primeng/primeflex (Framework CSS seleccionado, es muy similar a Bootstrap pero con una librería más amplia de componentes y fácil manejo de temas. Primeng contiene los componentes y manejo de temas mientras que primeflex tiene las clases precreadas para aplicar estilos al igual que lo hace Bootstrap).
+- fontawesome (librería de iconos)
+- ngx-charts (librería de gráficos seleccionada)
