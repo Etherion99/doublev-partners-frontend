@@ -10,8 +10,7 @@ import { forbidenWordValidator } from 'src/app/shared/validators/forbidenWordVal
   styleUrls: ['./explorer.component.sass']
 })
 export class ExplorerComponent {
-  searchTextControl = new FormControl('etherion', [
-    Validators.required,
+  searchTextControl = new FormControl('', [
     Validators.minLength(4),
     forbidenWordValidator('doublevpartners')
   ]);
@@ -35,25 +34,26 @@ export class ExplorerComponent {
     private readonly githubService: GithubService,
     private router: Router
   ) {
-    this.search();
+
   }
 
   search() {
-    if(this.searchTextControl.valid) {
+    if (this.searchTextControl.valid) {
       this.githubService.searchUsers(this.searchTextControl.value || '').subscribe((data: any) => {
         this.users = data['items'].map((item: any) => {
           item['score'] = Math.floor(Math.random() * (50 - 20 + 1)) + 20;
           return item;
         });
-        
+
         this.getUsersFollowers();
       });
-    }else{
+    } else {
       this.users = [];
+      this.chartData = [];
     }
   };
 
-  async getUsersFollowers(){
+  async getUsersFollowers() {
     this.users = await Promise.all(this.users.map(async user => {
       const userData: any = await this.githubService.getUser(user.login);
       user['followers'] = userData['followers'];
@@ -64,14 +64,14 @@ export class ExplorerComponent {
     this.createFollowersChart();
   }
 
-  createFollowersChart(){
+  createFollowersChart() {
     this.chartData = this.users.map(user => ({
       name: user.login,
       value: user.followers
     }));
   }
 
-  openViewer(user: any){
+  openViewer(user: any) {
     this.router.navigateByUrl(`/profile/viewer/${user.login}?score=${user.score}`);
   }
 }

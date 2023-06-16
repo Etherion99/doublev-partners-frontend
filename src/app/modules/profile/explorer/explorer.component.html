@@ -9,9 +9,6 @@
     </div>
     <div class="grid mt-5 error-message justify-content-center" 
       *ngIf="searchTextControl.invalid && (true || searchTextControl.dirty || searchTextControl.touched)">
-      <strong *ngIf="searchTextControl.hasError('required')">
-        Field is required.<br>
-      </strong>
       <strong *ngIf="searchTextControl.hasError('minlength')">
         Minimum length is 4 characters.<br>
       </strong>
@@ -54,19 +51,20 @@
   </div>
 </div>
 
-<h2 class="text-center">Estadísticas de Seguidores</h2>
+<div *ngIf="chartData.length > 0">
+  <h2 class="text-center">Estadísticas de Seguidores</h2>
 
-<div class="grid justify-content-center my-4 col-12">
-  <ngx-charts-bar-vertical
-  [view]="chartView"
-  [results]="chartData"
-  [xAxis]="chartConfig['showXAxis']"
-  [yAxis]="chartConfig['showYAxis']"
-  [legend]="chartConfig['showLegend']"
-  [showXAxisLabel]="chartConfig['showXAxisLabel']"
-  [showYAxisLabel]="chartConfig['showYAxisLabel']"
-  [xAxisLabel]="chartConfig['xAxisLabel']"
-  [yAxisLabel]="chartConfig['yAxisLabel']">
-</ngx-charts-bar-vertical>
+  <div class="grid justify-content-center my-4 col-12">
+    <ngx-charts-bar-vertical
+    [view]="chartView"
+    [results]="chartData"
+    [xAxis]="chartConfig['showXAxis']"
+    [yAxis]="chartConfig['showYAxis']"
+    [legend]="chartConfig['showLegend']"
+    [showXAxisLabel]="chartConfig['showXAxisLabel']"
+    [showYAxisLabel]="chartConfig['showYAxisLabel']"
+    [xAxisLabel]="chartConfig['xAxisLabel']"
+    [yAxisLabel]="chartConfig['yAxisLabel']">
+  </ngx-charts-bar-vertical>
+  </div>
 </div>
-
